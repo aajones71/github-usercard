@@ -41,11 +41,11 @@ function gitCard(data){
          cardInfo.appendChild(newName)
 
   const  newLocation = document.createElement("p");
-         newLocation.innerText = `Location: data.location`;
+         newLocation.innerText = `Location: ${data.location}`;
          cardInfo.appendChild(newLocation);
 
   const  newFollowers = document.createElement("p");
-         newFollowers.innerText =  `Followers: data.followers`;
+         newFollowers.innerText =  `Followers: ${data.followers}`;
          cardInfo.appendChild(newFollowers);
 
     // newImg.appendChild(cardInfo)
