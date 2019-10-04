@@ -24,29 +24,35 @@ axios
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
-function gitCard(name, location, avatar_url, followers){
-  const
-    newCard = document.createElement("div"),
-    newImg = document.createElement("img"),
-    card_info =document.createElement("div"),
-    newName = document.createElement("h2"),
-    newLocation = document.createElement("p"),
-    newFollowers = document.createElement("p");
+function gitCard(data){
+  const  newCard = document.createElement("div");
+         newCard.classList.add("card");
 
-    newCard.appendChild(newImg)
-    newImg.appendChild(card_info)
-    card_info.appendChild(newName)
-    card_info.appendChild(newLocation)
-    card_info.appendChild(newFollowers)
-   
-    newImg.setAttribute("src", avatar_url)
-    newName.textContent = name;
-    newLocation.textContent = location;
-    newFollowers.textContent = `Followers: ${followers}`;
-    newCard.classList.add("card");
-    newName.classList.add("name");
+  const newImg = document.createElement("img");
+          newImg.setAttribute("src", data.avatar_url);
+          newCard.appendChild(newImg);
 
-    return newCard;
+  const cardInfo =document.createElement("div");
+        cardInfo.classList.add("card-info");
+
+  const  newName = document.createElement("h2");
+         newName.classList.add("name");
+         newName.innerText = data.name;
+         cardInfo.appendChild(newName)
+
+  const  newLocation = document.createElement("p");
+         newLocation.innerText = `Location: data.location`;
+         cardInfo.appendChild(newLocation);
+
+  const  newFollowers = document.createElement("p");
+         newFollowers.innerText =  `Followers: data.followers`;
+         cardInfo.appendChild(newFollowers);
+
+    // newImg.appendChild(cardInfo)
+    
+    newCard.appendChild(cardInfo);
+
+      return newCard;
 }
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
