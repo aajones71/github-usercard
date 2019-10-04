@@ -7,7 +7,7 @@ const cards = document.querySelector(".cards");
 axios
 .get("https://api.github.com/users/aplusdigitalmedia")
   .then(response => {
-    console.log(response)
+    console.log(response.data)
      
       cards.appendChild(gitCard(response.data))
     })
@@ -33,19 +33,18 @@ function gitCard(name, location, avatar_url, followers){
     newLocation = document.createElement("p"),
     newFollowers = document.createElement("p");
 
+    newCard.appendChild(newImg)
+    newImg.appendChild(card_info)
+    card_info.appendChild(newName)
+    card_info.appendChild(newLocation)
+    card_info.appendChild(newFollowers)
+   
     newImg.setAttribute("src", avatar_url)
     newName.textContent = name;
     newLocation.textContent = location;
     newFollowers.textContent = `Followers: ${followers}`;
     newCard.classList.add("card");
     newName.classList.add("name");
-
-    newCard.appendChild(newImg)
-    newImg.appendChild(card_info)
-    card_info.appendChild(newName)
-    card_info.appendChild(newLocation)
-    card_info.appendChild(newName)
-   
 
     return newCard;
 }
