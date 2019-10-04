@@ -3,15 +3,15 @@
            https://api.github.com/users/aplusdigitalmedia
 */
 
-const entryPoint = document.querySelector(".cards")
+const cards = document.querySelector(".cards");
 axios
 .get("https://api.github.com/users/aplusdigitalmedia")
   .then(response => {
-    console.log(response.data)
-    const newData = response.data;
-    entryPoint.appendChild(newData);
-  })
-  .catch(error => {
+    console.log(response)
+     
+      cards.appendChild(gitCard(response.data.avatar_url, response.data.name, response.data.location, response.data.followers))
+    })
+    .catch(error => {
     console.log("Error", error)
   })
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -24,7 +24,7 @@ axios
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
-function gitCard(newData){
+function gitCard(data, name, location, avatar_url, followers){
   const
     newCard = document.createElement("div"),
     newImg = document.createElement("img"),
@@ -36,8 +36,13 @@ function gitCard(newData){
     newName.textContent = data.name;
     newLocation.textContent = data.location;
     newFollowers.textContent = data.followers;
-    newCard.classList.add("card")
-    newName.classList.add("name")
+    newCard.classList.add("card");
+    newName.classList.add("name");
+
+    newCard.appendChild(newImg)
+    newImg.appendChild(newName)
+    newName.appendChild(newLocation)
+    newLocation.appendChild(newFollowers)
 
     return newCard;
 }
